@@ -17,7 +17,7 @@ const Component8: FunctionComponent<Component8Type> = ({ className = "" }) => {
             <img
               className="h-[7rem] w-[7rem] relative z-[0]"
               alt=""
-              src="/share/.svg"
+              src="/share/logo.svg"
             />
             <div className="h-[1.05rem] w-[0.244rem] absolute !!m-[0 important] top-[4.438rem] left-[2.1rem] rounded-[50%] bg-[#191919] z-[2]" />
             <div className="h-[1.05rem] w-[0.244rem] absolute !!m-[0 important] top-[4.438rem] left-[4.794rem] rounded-[50%] bg-[#191919] z-[3]" />

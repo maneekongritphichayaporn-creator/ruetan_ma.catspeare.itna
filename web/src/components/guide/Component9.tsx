@@ -20,7 +20,7 @@ const Component9: FunctionComponent<Component9Type> = ({ className = "" }) => {
           <img
             className="h-[10.75rem] w-[10.75rem] relative z-[0]"
             alt=""
-            src="/share/.svg"
+            src="/share/logo.svg"
           />
           <div className="h-[1.613rem] w-[0.375rem] absolute !!m-[0 important] top-[4.894rem] left-[3.225rem] rounded-[50%] bg-[#191919] z-[2]" />
           <div className="h-[1.613rem] w-[0.375rem] absolute !!m-[0 important] top-[4.894rem] left-[7.363rem] rounded-[50%] bg-[#191919] z-[3]" />

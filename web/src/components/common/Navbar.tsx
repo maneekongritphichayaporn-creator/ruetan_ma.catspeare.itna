@@ -15,7 +15,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({ className = "" }) => {
         to="/"
         className="h-11 shrink-0 overflow-hidden flex items-center gap-3 [text-decoration:none] text-[#191919] mq750:gap-2 mq450:gap-1 mq450:h-10"
       >
-        <img className="h-11 w-11 relative mq1050:h-9 mq1050:w-9 mq450:h-8 mq450:w-8" alt="Logo" src="/share/.svg" />
+        <img className="h-11 w-11 relative mq1050:h-9 mq1050:w-9 mq450:h-8 mq450:w-8" alt="Logo" src="/share/logo.svg" />
         <h2 className="m-0 relative text-[length:inherit] font-extrabold font-[inherit] mq1050:text-[1.25rem] mq450:text-[1rem]">
           รู้ทัน
         </h2>
