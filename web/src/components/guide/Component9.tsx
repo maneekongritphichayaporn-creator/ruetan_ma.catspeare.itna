@@ -7,7 +7,7 @@ export type Component9Type = {
 const Component9: FunctionComponent<Component9Type> = ({ className = "" }) => {
   return (
     <div
-      className={`h-[17.5rem] w-[22.5rem] overflow-hidden shrink-0 flex items-start relative isolate max-w-full text-left text-[0.875rem] text-[#ffd43b] font-['Noto_Sans_Thai'] lg:flex-1 mq750:min-w-full ${className}`}
+      className={`h-[17.5rem] w-[22.5rem] overflow-hidden shrink-0 flex items-start relative isolate max-w-full text-left text-[0.875rem] text-[#ffd43b] font-['Noto_Sans_Thai'] lg:w-full lg:flex-none mq750:min-w-full ${className}`}
     >
       <div className="h-[15.625rem] w-[15.625rem] absolute !!m-[0 important] top-[0.625rem] left-[calc(50%_-_7.8125rem)] rounded-[50%] bg-[#ffd43b] z-[0]" />
       <img
