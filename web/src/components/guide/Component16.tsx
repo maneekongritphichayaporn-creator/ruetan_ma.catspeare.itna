@@ -50,7 +50,7 @@ const Component16: FunctionComponent<Component16Type> = ({
             </div>
           </div>
         </div>
-        <div className="w-[25rem] rounded-[20px] bg-[#fff] border-[#e3e0d6] border-solid border-[1px] box-border overflow-hidden shrink-0 flex flex-col items-start py-[1.375rem] pl-[1.5rem] pr-[1.25rem] gap-[0.875rem] max-w-full text-[#65645e] lg:flex-1 mq750:min-w-full">
+        <div className="w-[25rem] rounded-[20px] bg-[#fff] border-[#e3e0d6] border-solid border-[1px] box-border overflow-hidden shrink-0 flex flex-col items-start py-[1.375rem] pl-[1.5rem] pr-[1.25rem] gap-[0.875rem] max-w-full text-[#65645e] mq750:min-w-full">
           <img
             className="w-[1.625rem] h-[1.625rem] relative"
             alt=""
