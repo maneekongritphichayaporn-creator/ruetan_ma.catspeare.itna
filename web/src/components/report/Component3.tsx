@@ -67,7 +67,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`flex-1 rounded-[20px] bg-[#fff] border-[#e3e0d6] border-solid border-[1px] box-border overflow-hidden flex flex-col items-start p-[2rem] gap-[1.5rem] min-w-[19.375rem] max-w-[55.5rem] text-left text-[1rem] text-[#191919] font-['Noto_Sans_Thai'] mq750:max-w-full mq1050:max-w-full mq1050:w-[calc(100%_-_40px)] mq1050:flex-1 ${className}`}
+      className={`flex-1 rounded-[20px] bg-[#fff] border-[#e3e0d6] border-solid border-[1px] box-border overflow-hidden flex flex-col items-start p-[2rem] gap-[1.5rem] min-w-0 max-w-[55.5rem] text-left text-[1rem] text-[#191919] font-['Noto_Sans_Thai'] mq450:p-[1rem] mq750:max-w-full mq1050:max-w-full mq1050:w-[calc(100%_-_40px)] mq1050:flex-1 ${className}`}
     >
       <div className="self-stretch overflow-hidden flex flex-col items-start gap-[0.375rem] shrink-0 text-[1.5rem]">
         <h3 className="m-0 self-stretch relative text-[length:inherit] font-bold font-[inherit] mq450:text-[1.188rem]">
@@ -79,17 +79,19 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
       </div>
       <div className="self-stretch h-[0.063rem] relative bg-[#e3e0d6]" />
       <div className="self-stretch overflow-hidden flex items-start gap-[1.25rem] shrink-0 max-w-full mq1050:flex-wrap">
-        <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.5rem] min-w-[16.313rem] max-w-full">
+        <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.5rem] min-w-0 max-w-full">
           <div className="w-full relative leading-[150%] font-semibold inline-block max-w-[8.5rem]">
             <span className="leading-[150%]">รูปแบบกลโกงที่พบ</span>
             <span className="text-[#65645e] leading-[150%]"> *</span>
           </div>
           <FormControl
-            className="self-stretch h-[3.5rem] font-['Noto_Sans_Thai'] text-[0.938rem] text-[#85847d] max-w-full"
+            className="self-stretch h-[3.5rem] min-w-0 font-['Noto_Sans_Thai'] text-[0.938rem] text-[#85847d] max-w-full"
             variant="outlined"
             sx={{
               borderRadius: "0px 0px 0px 0px",
               width: "100%",
+              minWidth: 0,
+              boxSizing: "border-box",
               height: "56px",
               m: 0,
               p: 0,
@@ -97,6 +99,9 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
                 m: 0,
                 p: 0,
                 minHeight: "56px",
+                width: "100%",
+                minWidth: 0,
+                boxSizing: "border-box",
                 justifyContent: "center",
                 display: "inline-flex",
               },
@@ -170,17 +175,19 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
             <FormHelperText />
           </FormControl>
         </div>
-        <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.5rem] min-w-[16.313rem] max-w-full mq1050:basis-full">
+        <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.5rem] min-w-0 max-w-full mq1050:basis-full">
           <div className="self-stretch relative leading-[150%] font-semibold">
             <span className="leading-[150%]">แพลตฟอร์มที่พบ</span>
             <span className="text-[#65645e] leading-[150%]"> *</span>
           </div>
           <FormControl
-            className="self-stretch font-['Noto_Sans_Thai'] text-[0.938rem] text-[#85847d] min-h-[3.5rem] max-w-full"
+            className="self-stretch min-w-0 font-['Noto_Sans_Thai'] text-[0.938rem] text-[#85847d] min-h-[3.5rem] max-w-full"
             variant="outlined"
             sx={{
               borderRadius: "0px 0px 0px 0px",
               width: "100%",
+              minWidth: 0,
+              boxSizing: "border-box",
               height: "56px",
               m: 0,
               p: 0,
@@ -188,6 +195,9 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
                 m: 0,
                 p: 0,
                 minHeight: "56px",
+                width: "100%",
+                minWidth: 0,
+                boxSizing: "border-box",
                 justifyContent: "center",
                 display: "inline-flex",
               },
@@ -300,7 +310,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
       </section>
       <section className="self-stretch overflow-hidden flex flex-col items-start gap-[0.75rem] max-w-full text-left text-[1rem] text-[#191919] font-['Noto_Sans_Thai']">
         <div className="self-stretch relative">
-          <span className="font-semibold">ลิงก์รูปภาพหลักฐาน</span>
+          <span className="font-semibold">ลิงก์รูปภาพหลักฐาน </span>
           <span className="text-[0.813rem] text-[#65645e]">(ไม่บังคับ)</span>
         </div>
         <div className="self-stretch rounded-[10px] bg-[#fff3be] overflow-hidden flex items-start p-[1rem] box-border gap-[0.75rem] max-w-full text-[0.938rem] mq750:flex-wrap">
