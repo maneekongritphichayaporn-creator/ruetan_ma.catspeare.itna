@@ -54,7 +54,7 @@ const Component15: FunctionComponent<Component15Type> = ({
         </div>
       </section>
       <div className="self-stretch overflow-hidden flex flex-wrap items-start gap-[1.5rem] max-w-full">
-        <div className="self-stretch w-[25.625rem] rounded-[20px] bg-[#fff3be] overflow-hidden shrink-0 flex flex-col items-start p-[1.75rem] box-border gap-[1.125rem] max-w-full lg:flex-1 mq750:pt-[1.25rem] mq750:pb-[1.25rem] mq750:box-border mq750:min-w-full">
+        <div className="self-stretch w-[25.625rem] rounded-[20px] bg-[#fff3be] overflow-hidden shrink-0 flex flex-col items-start p-[1.75rem] box-border gap-[1.125rem] max-w-full mq750:pt-[1.25rem] mq750:pb-[1.25rem] mq750:box-border mq750:min-w-full">
           <img
             className="w-[2rem] h-[2rem] relative"
             alt=""
