@@ -78,7 +78,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
         </div>
       </div>
       <div className="self-stretch h-[0.063rem] relative bg-[#e3e0d6]" />
-      <div className="self-stretch overflow-hidden flex items-start gap-[1.25rem] shrink-0 max-w-full mq750:flex-wrap">
+      <div className="self-stretch overflow-hidden flex items-start gap-[1.25rem] shrink-0 max-w-full mq1050:flex-wrap">
         <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.5rem] min-w-[16.313rem] max-w-full">
           <div className="w-full relative leading-[150%] font-semibold inline-block max-w-[8.5rem]">
             <span className="leading-[150%]">รูปแบบกลโกงที่พบ</span>
@@ -89,7 +89,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
             variant="outlined"
             sx={{
               borderRadius: "0px 0px 0px 0px",
-              width: "401px",
+              width: "100%",
               height: "56px",
               m: 0,
               p: 0,
@@ -170,7 +170,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
             <FormHelperText />
           </FormControl>
         </div>
-        <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.5rem] min-w-[16.313rem] max-w-full">
+        <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.5rem] min-w-[16.313rem] max-w-full mq1050:basis-full">
           <div className="self-stretch relative leading-[150%] font-semibold">
             <span className="leading-[150%]">แพลตฟอร์มที่พบ</span>
             <span className="text-[#65645e] leading-[150%]"> *</span>
@@ -180,7 +180,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
             variant="outlined"
             sx={{
               borderRadius: "0px 0px 0px 0px",
-              width: "401px",
+              width: "100%",
               height: "56px",
               m: 0,
               p: 0,
@@ -309,7 +309,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
             alt=""
             src="/share/shield-alert.svg"
           />
-          <div className="flex-1 overflow-hidden flex flex-col items-start gap-[0.375rem] min-w-[30.625rem] max-w-full mq750:min-w-full">
+          <div className="flex-1 min-w-0 overflow-hidden flex flex-col items-start gap-[0.375rem] max-w-full break-words">
             <b className="self-stretch relative leading-[150%]">
               ปิดข้อมูลส่วนบุคคลในรูปภาพก่อนแชร์ลิงก์
             </b>
