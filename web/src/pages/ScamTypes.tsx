@@ -191,8 +191,8 @@ const ScamTypes: FunctionComponent = () => {
         </section>
         <Component2 />
       </div>
-      <main className="self-stretch h-[166.438rem] relative bg-[#f7f7f8] overflow-hidden shrink-0 max-w-full lg:h-auto lg:min-h-[166.438rem]">
-        <section className="absolute -top-0.5 left-0 w-full overflow-hidden flex flex-col items-start pt-8 px-20 pb-12 box-border gap-8 max-w-full shrink-0 mq750:gap-[1rem] mq750:pl-[2.5rem] mq750:pr-[2.5rem] mq750:box-border">
+      <main className="self-stretch flex flex-col items-start bg-[#f7f7f8] max-w-full">
+        <section className="self-stretch overflow-hidden flex flex-col items-start pt-8 px-20 pb-12 box-border gap-8 max-w-full mq750:gap-[1rem] mq750:pl-[2.5rem] mq750:pr-[2.5rem] mq750:box-border">
           <Component11 />
           {component5Items.map((item, index) => (
             <Component5
