@@ -67,7 +67,7 @@ const Component16: FunctionComponent<Component16Type> = ({
             อธิบายการใช้โปรไฟล์ปลอมสร้างความสัมพันธ์
             ก่อนพาไปลงทุนบนแพลตฟอร์มปลอม และกล่าวถึงการสืบสวนเครือข่ายในไทย
           </div>
-          <div className="self-stretch overflow-hidden flex items-start gap-[0.75rem] text-[1.25rem] mq750:flex-wrap">
+          <div className="self-stretch overflow-hidden flex flex-wrap items-start gap-[0.75rem] text-[1.25rem]">
             <div className="flex-1 rounded-xl bg-[#fff] border-[#e3e0d6] border-solid border-[1px] box-border overflow-hidden flex flex-col items-start py-[0.75rem] px-[0.812rem] gap-[0.5rem] min-w-[11.125rem]">
               <h3 className="m-0 self-stretch relative text-[length:inherit] leading-[165%] font-extrabold font-[inherit] mq450:text-[1rem] mq450:leading-[1.625rem]">
                 01
