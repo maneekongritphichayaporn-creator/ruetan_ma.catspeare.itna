@@ -27,19 +27,19 @@ const Component7: FunctionComponent<Component7Type> = ({ className = "" }) => {
           </div>
         </div>
         <div className="h-[13.125rem] relative overflow-hidden min-w-[20.625rem] max-w-full text-[0.813rem] text-[#ffd43b] lg:flex-1">
-          <div className="absolute top-[calc(50%_-_105px)] left-[3.125rem] rounded-[50%] bg-[#ffd43b] w-[12.75rem] h-[12.75rem]" />
+          <div className="absolute top-[calc(50%_-_105px)] left-[calc(50%_-_6.375rem)] rounded-[50%] bg-[#ffd43b] w-[12.75rem] h-[12.75rem]" />
           <img
-            className="absolute top-[calc(50%_-_87px)] right-[0.906rem] rounded-2xl w-[9.806rem] h-[10.375rem] object-contain"
+            className="absolute top-[calc(50%_-_87px)] left-[calc(50%_-_0.25rem)] rounded-2xl w-[9.806rem] h-[10.375rem] object-contain"
             loading="lazy"
             alt=""
             src="/report-form/4@2x.png"
           />
           <img
-            className="absolute top-[calc(50%_-_85px)] left-[0.5rem] w-[10rem] h-[10rem] object-cover"
+            className="absolute top-[calc(50%_-_85px)] left-[calc(50%_-_10rem)] w-[10rem] h-[10rem] object-cover"
             alt=""
             src="/report-form/7@2x.png"
           />
-          <div className="absolute bottom-[0.125rem] left-[0rem] rounded-[100px] bg-[#191919] overflow-hidden flex items-start py-[0.5rem] px-[1rem]">
+          <div className="absolute bottom-[0.125rem] left-1/2 -translate-x-1/2 rounded-[100px] bg-[#191919] overflow-hidden flex items-start py-[0.5rem] px-[1rem]">
             <div className="relative font-semibold">
               ขอบคุณที่ช่วยกันเตือนภัย
             </div>
