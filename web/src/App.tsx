@@ -12,6 +12,7 @@ import ScamTypes from "./pages/ScamTypes";
 import ReportingGuide from "./pages/ReportingGuide";   
 import KnowledgeBase from "./pages/KnowledgeBase";     
 import ReportForm from "./pages/ReportForm";           
+import ScamSimulator from "./pages/ScamSimulator";
 
 function App() {
   const action = useNavigationType();
@@ -58,6 +59,10 @@ function App() {
         title = "แจ้งเบาะแสภัยออนไลน์";
         metaDescription = "แบบฟอร์มแจ้งเบาะแสภัยไซเบอร์ ส่งต่อข้อมูลเพื่อความปลอดภัยของสังคม";
         break;
+      case "/scam-simulator":
+        title = "จำลองสถานการณ์กลโกง | รู้ทันมิจฉาชีพ";
+        metaDescription = "ฝึกสังเกตกลโกงออนไลน์ผ่านสถานการณ์จำลองและเรียนรู้วิธีรับมืออย่างปลอดภัย";
+        break;
     }
 
     if (title) {
@@ -90,6 +95,8 @@ function App() {
 
       {/* 5. ฟอร์มแจ้งเบาะแส (scam_project5) */}
       <Route path="/report-form" element={<ReportForm />} />
+
+      <Route path="/scam-simulator" element={<ScamSimulator />} />
 
       {/* กรณีใส่ URL ผิด ให้ย้อนกลับหน้าแรก */}
       <Route path="*" element={<Navigate to="/" replace />} />
