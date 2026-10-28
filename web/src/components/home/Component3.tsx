@@ -34,7 +34,7 @@ const Component3: FunctionComponent<Component3Type> = ({
       className={`flex-1 rounded-[20px] bg-[#fff] border-[#e3e0d6] border-solid border-[1px] box-border overflow-hidden flex flex-col items-start p-[1.5rem] gap-[1rem] min-w-[14.313rem] max-w-[19.063rem] text-left text-[0.75rem] text-[#65645e] font-['Noto_Sans_Thai'] [text-decoration:none] hover:border-[#ffd43b] hover:shadow-md transition-shadow ${className}`}
     >
       <img
-        className="self-stretch h-[4rem] relative max-w-full overflow-hidden shrink-0 object-cover"
+        className="self-stretch h-[4rem] w-full relative shrink-0 object-contain object-left"
         loading="lazy"
         alt=""
         src={prop}
