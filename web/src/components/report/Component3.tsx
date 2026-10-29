@@ -12,9 +12,13 @@ const GOOGLE_APPS_SCRIPT_URL =
 
 export type Component3Type = {
   className?: string;
+  onSubmitSuccess?: () => void;
 };
 
-const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
+const Component3: FunctionComponent<Component3Type> = ({
+  className = "",
+  onSubmitSuccess,
+}) => {
   const [details, setDetails] = useState("");
   const [scamType, setScamType] = useState("");
   const [platform, setPlatform] = useState("");
@@ -50,6 +54,7 @@ const Component3: FunctionComponent<Component3Type> = ({ className = "" }) => {
       setSuccessMessage(
         "ส่งคำขอแจ้งเรื่องแล้ว ขอบคุณที่ร่วมปกป้องสังคมจากภัยไซเบอร์",
       );
+      onSubmitSuccess?.();
       setScamType("");
       setPlatform("");
       setScammerContact("");

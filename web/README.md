@@ -71,6 +71,27 @@ npm run dev
 
 เมื่อแก้ไข source code ระบบจะแสดงการเปลี่ยนแปลงระหว่างพัฒนาโดยอัตโนมัติ
 
+## LINE OA Webhook
+
+โปรเจกต์มี Vercel Function สำหรับรับข้อความจาก LINE OA ที่ `POST /api/webhook`
+โดยตรวจสอบ `X-Line-Signature` ด้วย Channel Secret ก่อนตอบข้อความ ตรวจจับคำว่า
+`โดนโกง`, `ดูดเงิน`, `โอนเงินผิด`, `ถูกหลอก`, `โอนไปแล้ว` และ `สลิป`
+แล้วส่งขั้นตอนรับมือเบื้องต้นกลับทาง LINE Reply API
+
+ตั้งค่า environment variables ต่อไปนี้ใน Vercel Project Settings > Environment Variables
+ห้ามใส่ค่าเหล่านี้ในตัวแปรที่ขึ้นต้นด้วย `VITE_` หรือ commit ลง repository:
+
+```env
+LINE_CHANNEL_SECRET=your-channel-secret
+LINE_CHANNEL_ACCESS_TOKEN=your-channel-access-token
+```
+
+หลัง deploy ให้ตั้ง Webhook URL ใน LINE Developers Console เป็น
+`https://<โดเมนของเว็บ>/api/line-webhook` กด Verify และเปิด Use webhook
+ใน LINE OA Manager ให้ตั้ง Response mode เป็น Bot และปิด Auto-response
+ขณะพัฒนา `npm run dev` ของ Vite ไม่ได้ให้บริการ API route นี้ ต้องทดสอบผ่าน Vercel
+deployment หรือ Vercel CLI
+
 ## Build
 
 สร้างไฟล์สำหรับ production ด้วยคำสั่ง
@@ -97,6 +118,7 @@ npm run preview
 web/
 ├── public/             # Static assets
 ├── src/                # Application source code
+├── api/                # Vercel serverless functions
 ├── index.html          # HTML entry point
 ├── package.json        # Project metadata and scripts
 ├── package-lock.json   # Locked dependency versions
