@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import liff from '@line/liff';
 import Navbar from "../components/common/Navbar";
 import BannerAOC from "../components/common/BannerAOC";
 import Footer from "../components/common/Footer";
+import { useLiff } from "../hooks/useLiff";
 
 // 1. กำหนด Type Structure สำหรับข้อมูล Scenario และ Choice
 interface Choice {
@@ -356,36 +356,17 @@ const SCENARIOS: Scenario[] = [
 ];
 
 export const ScamSimulator: React.FC = () => {
-  const [liffInitialized, setLiffInitialized] = useState<boolean>(false);
-  const [userProfile, setUserProfile] = useState<
-    Awaited<ReturnType<typeof liff.getProfile>> | null
-  >(null);
+  const { initialized, isInClient, profile, sendMessage, closeWindow, error: liffError } = useLiff();
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState<number>(0);
   const [selectedChoice, setSelectedChoice] = useState<Choice | null>(null);
   const [chatHistory, setChatHistory] = useState<ChatItem[]>([]);
   const [simulationResult, setSimulationResult] = useState<number | "safe" | null>(null);
   const mobileSimulatorRef = useRef<HTMLElement>(null);
+  const [liffActionError, setLiffActionError] = useState("");
 
   const scenario = SCENARIOS[currentScenarioIndex];
-
-  // Initialize LIFF SDK
-  useEffect(() => {
-    const initLiff = async () => {
-      try {
-        const liffId = import.meta.env.VITE_LIFF_ID || "YOUR_LIFF_ID";
-        await liff.init({ liffId });
-        setLiffInitialized(true);
-
-        if (liff.isLoggedIn()) {
-          const profile = await liff.getProfile();
-          setUserProfile(profile);
-        }
-      } catch (error) {
-        console.error("LIFF Init Error:", error);
-      }
-    };
-    initLiff();
-  }, []);
+  const completedAllScenarios =
+    currentScenarioIndex === SCENARIOS.length - 1 && selectedChoice !== null;
 
   // เริ่มต้นบทสนทนาเมื่อโหลด Scenario
   useEffect(() => {
@@ -401,13 +382,13 @@ export const ScamSimulator: React.FC = () => {
   }, [scenario]);
 
   useEffect(() => {
-    if (selectedChoice) {
+    if (completedAllScenarios) {
       mobileSimulatorRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "start"
       });
     }
-  }, [selectedChoice]);
+  }, [completedAllScenarios]);
 
   // ฟังก์ชันเมื่อผู้เล่นกดเลือกคำตอบ
   const handleSelectChoice = (choice: Choice) => {
@@ -421,6 +402,8 @@ export const ScamSimulator: React.FC = () => {
   };
 
   const handleNextScenario = () => {
+    setSelectedChoice(null);
+    setSimulationResult(null);
     setCurrentScenarioIndex((index) => (index + 1) % SCENARIOS.length);
   };
 
@@ -430,23 +413,21 @@ export const ScamSimulator: React.FC = () => {
 
   // ส่งผลการทดสอบกลับเข้าห้องแชต LINE
   const handleSendSummaryToChat = async () => {
-    if (!liff.isInClient()) {
-      alert("ฟังก์ชันนี้ใช้งานได้เมื่อเปิดผ่านแอป LINE เท่านั้น");
-      return;
-    }
-
     if (!selectedChoice) return;
 
     try {
-      await liff.sendMessages([
-        {
-          type: "text",
-          text: `[ผลทดสอบ Scam Simulator - รู้ทัน]\nหัวข้อ: ${scenario.title}\nผลลัพธ์: ${selectedChoice.feedback}\nข้อแนะนำ: ${selectedChoice.explanation}`
-        }
-      ]);
-      liff.closeWindow();
-    } catch (err) {
-      console.error("Error sending message:", err);
+      setLiffActionError("");
+      await sendMessage(
+        `[ผลทดสอบ Scam Simulator - รู้ทัน]\nหัวข้อ: ${scenario.title}\nผลลัพธ์: ${selectedChoice.feedback}\nข้อแนะนำ: ${selectedChoice.explanation}`,
+      );
+      closeWindow();
+    } catch (sendError) {
+      console.error("LIFF Send Message Error:", sendError);
+      setLiffActionError(
+        sendError instanceof Error
+          ? sendError.message
+          : "ส่งผลสรุปเข้า LINE ไม่สำเร็จ กรุณาลองอีกครั้ง",
+      );
     }
   };
 
@@ -482,14 +463,18 @@ export const ScamSimulator: React.FC = () => {
                       ห้องซ้อมรับมือ Scam
                     </h2>
                     <p className="m-0 mt-1 text-xs text-[#65645e]">
-                      {liffInitialized ? "ระบบพร้อมใช้งาน" : "กำลังเชื่อมต่อ LIFF..."}
+                      {initialized
+                        ? isInClient
+                          ? "เชื่อมต่อ LINE แล้ว"
+                          : "เปิดผ่าน LINE เพื่อส่งผลสรุป"
+                        : liffError || "กำลังเชื่อมต่อ LIFF..."}
                     </p>
                   </div>
                 </div>
-                {userProfile?.pictureUrl && (
+                {profile?.pictureUrl && (
                   <img
-                    src={userProfile.pictureUrl}
-                    alt={userProfile.displayName || "User Avatar"}
+                    src={profile.pictureUrl}
+                    alt={profile.displayName || "User Avatar"}
                     className="h-10 w-10 shrink-0 rounded-full border border-[#e3e0d6]"
                   />
                 )}
@@ -575,10 +560,18 @@ export const ScamSimulator: React.FC = () => {
                     </div>
                     <button
                       onClick={handleSendSummaryToChat}
-                      className="mt-4 w-full cursor-pointer rounded-xl bg-[#191919] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#4d4d4d] active:scale-[0.99]"
+                      disabled={!initialized || !isInClient}
+                      className="mt-4 w-full cursor-pointer rounded-xl bg-[#191919] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#4d4d4d] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      ส่งผลสรุปกลับเข้าห้องแชต
+                      {initialized && isInClient
+                        ? "ส่งผลสรุปกลับเข้าห้องแชต"
+                        : "เปิดผ่าน LINE เพื่อส่งผลสรุป"}
                     </button>
+                    {(liffError || liffActionError) && (
+                      <p className="mb-0 mt-2 text-xs text-[#9a2929]" role="alert">
+                        {liffActionError || liffError}
+                      </p>
+                    )}
                     <button
                       onClick={handleNextScenario}
                       className="mt-2 w-full cursor-pointer rounded-xl bg-[#ffd43b] px-4 py-3 text-sm font-bold text-[#191919] transition-colors hover:bg-[#e6ba21] active:scale-[0.99]"
@@ -627,7 +620,7 @@ export const ScamSimulator: React.FC = () => {
             </section>
           </div>
 
-          {selectedChoice && (
+          {completedAllScenarios && (
             <section
               ref={mobileSimulatorRef}
               style={{ scrollMarginTop: "7rem" }}
@@ -635,10 +628,10 @@ export const ScamSimulator: React.FC = () => {
             >
               <div className="border-b border-[#e3e0d6] px-6 py-5 mq450:px-4">
                 <p className="mb-1 text-xs font-bold tracking-wide text-[#8a6b00]">
-                  ทดลองบนมือถือจำลอง
+                  จบครบทั้ง 6 สถานการณ์แล้ว
                 </p>
                 <h2 className="m-0 text-xl font-bold text-[#191919] mq450:text-lg">
-                  ถ้าเจอข้อความนี้บนมือถือ คุณจะทำอย่างไร?
+                  ทดลองเหตุการณ์เสี่ยงบนมือถือจำลอง
                 </h2>
                 <p className="mb-0 mt-2 text-sm leading-6 text-[#65645e]">
                   แตะลิงก์หรือปุ่มในหน้าจอจำลองเพื่อเรียนรู้สัญญาณอันตราย
